@@ -39,7 +39,7 @@ export default function Home() {
       <section className="hero-band">
         <div>
           <h1>BoysGadget Stream</h1>
-          <p>Database gadget, spesifikasi, berita, dan trending yang dihitung dari aktivitas data aplikasi.</p>
+          <p>Cek spek, pantau tren, update berita, dan bagikan pengalaman gadget-mu di sini.</p>
         </div>
         <div className="search-box">
           <Search size={18} />

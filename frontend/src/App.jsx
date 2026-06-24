@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import { ShieldCheck } from 'lucide-react';
 import { AuthProvider, useAuth } from './auth.jsx';
+import logo from './assets/logo.png';
 import Home from './pages/Home.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import GadgetDetail from './pages/GadgetDetail.jsx';
@@ -27,8 +28,7 @@ function Shell() {
     <>
       <header className="topbar">
         <NavLink to="/" className="brand">
-          <span className="brand-mark">BG</span>
-          <span>BoysGadget Stream</span>
+          <img src={logo} alt="BoysGadget Stream" style={{ height: 36, width: 'auto' }} />
         </NavLink>
         <nav className="nav">
           <NavLink to="/">Explore</NavLink>
