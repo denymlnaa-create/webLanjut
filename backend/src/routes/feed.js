@@ -28,13 +28,11 @@ const upload = multer({
 
 const router = Router();
 
-// Parse #slug tags from post content
 async function resolveGadgetTags(content) {
   const matches = [...content.matchAll(/#([a-z0-9][a-z0-9-]*)/gi)];
   if (!matches.length) return [];
   const slugs = [...new Set(matches.map(m => m[1].toLowerCase()))];
 
-  // Load all gadgets and match by normalized name
   const [allGadgets] = await db.query('SELECT id, name, brand FROM gadgets');
   const matched = allGadgets.filter(g => {
     const normalized = g.name.toLowerCase()
@@ -93,7 +91,6 @@ async function enrichPosts(posts, authHeader) {
   }));
 }
 
-// GET /api/feed/posts — main feed
 router.get('/posts', async (req, res) => {
   try {
     const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -116,7 +113,6 @@ router.get('/posts', async (req, res) => {
   }
 });
 
-// GET /api/feed/gadget/:gadgetId — posts that tag a specific gadget
 router.get('/gadget/:gadgetId', async (req, res) => {
   try {
     const gadgetId = parseInt(req.params.gadgetId);
@@ -143,7 +139,6 @@ router.get('/gadget/:gadgetId', async (req, res) => {
   }
 });
 
-// POST /api/feed/posts
 router.post('/posts', authRequired, (req, res) => {
   upload.single('image')(req, res, async (err) => {
     if (err) return res.status(400).json({ error: err.message || 'Upload gagal.' });
@@ -189,7 +184,6 @@ router.post('/posts', authRequired, (req, res) => {
   });
 });
 
-// POST /api/feed/posts/:id/like
 router.post('/posts/:id/like', authRequired, async (req, res) => {
   try {
     const postId = parseInt(req.params.id);
@@ -224,7 +218,6 @@ router.post('/posts/:id/like', authRequired, async (req, res) => {
   }
 });
 
-// GET /api/feed/posts/:id/replies
 router.get('/posts/:id/replies', async (req, res) => {
   try {
     const postId = parseInt(req.params.id);
@@ -244,7 +237,6 @@ router.get('/posts/:id/replies', async (req, res) => {
   }
 });
 
-// POST /api/feed/posts/:id/replies
 router.post('/posts/:id/replies', authRequired, async (req, res) => {
   try {
     const postId = parseInt(req.params.id);
@@ -273,14 +265,12 @@ router.post('/posts/:id/replies', authRequired, async (req, res) => {
   }
 });
 
-// DELETE /api/feed/posts/:id
 router.delete('/posts/:id', authRequired, async (req, res) => {
   try {
     const postId = parseInt(req.params.id);
     const [[post]] = await db.query('SELECT id, user_id FROM posts WHERE id=?', [postId]);
     if (!post) return res.status(404).json({ error: 'Post tidak ditemukan.' });
 
-    // Hanya pemilik atau admin yang boleh hapus
     if (post.user_id !== req.user.id && req.user.role !== 'admin') {
       return res.status(403).json({ error: 'Tidak diizinkan.' });
     }
@@ -293,7 +283,6 @@ router.delete('/posts/:id', authRequired, async (req, res) => {
   }
 });
 
-// GET /api/feed/user/:username — public profile
 router.get('/user/:username', async (req, res) => {
   try {
     const { username } = req.params;
@@ -303,7 +292,6 @@ router.get('/user/:username', async (req, res) => {
     );
     if (!user) return res.status(404).json({ error: 'User tidak ditemukan.' });
 
-    // Posts by user
     const [posts] = await db.query(
       `SELECT p.id, p.content, p.image_url, p.like_count, p.reply_count, p.created_at,
               GROUP_CONCAT(DISTINCT g.name ORDER BY g.name SEPARATOR ', ') AS gadget_names,
@@ -318,7 +306,6 @@ router.get('/user/:username', async (req, res) => {
       [user.id]
     );
 
-    // Replies by user
     const [replies] = await db.query(
       `SELECT r.id, r.content, r.created_at, r.post_id,
               p.content AS post_content,
@@ -339,7 +326,6 @@ router.get('/user/:username', async (req, res) => {
   }
 });
 
-// DELETE /api/feed/posts/:postId/replies/:replyId
 router.delete('/posts/:postId/replies/:replyId', authRequired, async (req, res) => {
   try {
     const replyId = parseInt(req.params.replyId);

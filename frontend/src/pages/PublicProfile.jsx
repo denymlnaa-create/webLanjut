@@ -42,7 +42,6 @@ export default function PublicProfile() {
 
   return (
     <div className="page" style={{ maxWidth: 680 }}>
-      {/* Profile header */}
       <div className="profile-avatar-section" style={{ marginBottom: 24 }}>
         <div className="profile-avatar-wrap">
           {avatarSrc ? (
@@ -68,7 +67,6 @@ export default function PublicProfile() {
         </div>
       </div>
 
-      {/* Tabs */}
       <div className="segmented" style={{ marginBottom: 16 }}>
         <button
           type="button"
@@ -88,7 +86,6 @@ export default function PublicProfile() {
         </button>
       </div>
 
-      {/* Posts tab */}
       {tab === 'posts' && (
         <div className="posts-list">
           {posts.length === 0 ? (
@@ -121,7 +118,6 @@ export default function PublicProfile() {
         </div>
       )}
 
-      {/* Replies tab */}
       {tab === 'replies' && (
         <div className="posts-list">
           {replies.length === 0 ? (

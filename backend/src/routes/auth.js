@@ -126,7 +126,6 @@ router.put('/profile', authRequired, async (req, res) => {
   }
 });
 
-// POST /api/auth/avatar — upload avatar
 router.post('/avatar', authRequired, (req, res) => {
   avatarUpload.single('avatar')(req, res, async (err) => {
     if (err) return res.status(400).json({ error: err.message || 'Upload gagal.' });

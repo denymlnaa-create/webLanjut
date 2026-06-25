@@ -64,7 +64,6 @@ export default function SettingsPage() {
       {message && <div className="success">{message}</div>}
       {error && <div className="alert">{error}</div>}
 
-      {/* Foto Profil */}
       <div className="profile-form" style={{ marginBottom: 16 }}>
         <h3 style={{ margin: '0 0 16px' }}>Foto Profil</h3>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
@@ -92,7 +91,6 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Username */}
       <form onSubmit={handleSave} className="profile-form" style={{ marginBottom: 16 }}>
         <h3 style={{ margin: '0 0 16px' }}>Ubah Username</h3>
         <label>
@@ -117,7 +115,6 @@ export default function SettingsPage() {
         </button>
       </form>
 
-      {/* Logout */}
       <div className="profile-form">
         <h3 style={{ margin: '0 0 16px' }}>Akun</h3>
         <button

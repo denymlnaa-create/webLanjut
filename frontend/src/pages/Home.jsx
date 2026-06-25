@@ -38,7 +38,7 @@ export default function Home() {
     <div className="page">
       <section className="hero-band">
         <div>
-          <h1>BoysGadget Stream</h1>
+          <h1>BoysGadget</h1>
           <p>Cek spek, pantau tren, update berita, dan bagikan pengalaman gadget-mu di sini.</p>
         </div>
         <div className="search-box">
@@ -47,7 +47,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trending — max 3 */}
       <section className="section">
         <div className="section-head">
           <div>
@@ -62,7 +61,6 @@ export default function Home() {
         )}
       </section>
 
-      {/* Semua Gadget — max 6 + tombol Lihat Semua */}
       <section className="section">
         <div className="section-head">
           <div>
@@ -82,7 +80,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Berita */}
       <section className="section">
         <div className="section-head">
           <div>

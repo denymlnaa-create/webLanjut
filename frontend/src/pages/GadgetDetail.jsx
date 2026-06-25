@@ -55,7 +55,6 @@ function renderContent(content, gadgets) {
   });
 }
 
-// Single post card with inline reply
 function PostCard({ post, onLike, onReplyAdded, onDelete }) {
   const { user } = useAuth();
   const [showReplies, setShowReplies] = useState(false);
@@ -225,7 +224,6 @@ export default function GadgetDetail() {
   const [posts, setPosts] = useState([]);
   const [loadingPosts, setLoadingPosts] = useState(true);
 
-  // Composer state
   const [postText, setPostText] = useState('');
   const [postImage, setPostImage] = useState(null);
   const [postImagePreview, setPostImagePreview] = useState(null);
@@ -239,7 +237,6 @@ export default function GadgetDetail() {
       .finally(() => setLoadingPosts(false));
   }, [id]);
 
-  // Auto-insert gadget tag when gadget loads
   useEffect(() => {
     if (gadget && user) {
       const slug = gadget.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -306,7 +303,6 @@ export default function GadgetDetail() {
 
   return (
     <div className="page">
-      {/* Info gadget */}
       <div className="detail-layout">
         <section className="detail-main">
           {gadget.image_url && (
@@ -356,7 +352,6 @@ export default function GadgetDetail() {
         </aside>
       </div>
 
-      {/* Diskusi section */}
       <section className="section">
         <div className="section-head">
           <div>
@@ -365,7 +360,6 @@ export default function GadgetDetail() {
           </div>
         </div>
 
-        {/* Composer */}
         {user ? (
           <div className="post-composer" style={{ marginBottom: 16 }}>
             <Avatar src={user.avatar_url ? resolveImage(user.avatar_url) : null} username={user.username} size={36} />
@@ -421,7 +415,6 @@ export default function GadgetDetail() {
           </div>
         )}
 
-        {/* Posts list */}
         {loadingPosts ? (
           <div className="empty">Memuat diskusi...</div>
         ) : posts.length === 0 ? (

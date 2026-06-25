@@ -37,28 +37,12 @@ README.md
 1. Buka MySQL, phpMyAdmin, Laragon, XAMPP, atau terminal MySQL.
 2. Import file:
 
-```text
-backend/db/schema.sql
-```
 
-File tersebut otomatis membuat database:
-
-```sql
-boysgadget2
-```
 
 Admin awal:
-
-```text
 username: admin
 password: password123
-```
 
-Kalau mau bikin user biasa jadi admin:
-
-```sql
-UPDATE users SET role = 'admin' WHERE username = 'nama_user';
-```
 
 ## Setup Backend
 

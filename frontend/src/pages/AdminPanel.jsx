@@ -57,7 +57,6 @@ export default function AdminPanel() {
 
   useEffect(() => { load(); }, []);
 
-  // Auto-trigger edit dari halaman detail via navigation state
   useEffect(() => {
     if (!location.state) return;
     const { editGadgetId, editArticleId } = location.state;
@@ -76,7 +75,6 @@ export default function AdminPanel() {
     }
   }, [location.state]);
 
-  // ── Gadget edit ──────────────────────────────────────────────
   const startEditGadget = async (gadget) => {
     try {
       const { data } = await api.get(`/gadgets/${gadget.id}`);
@@ -106,7 +104,6 @@ export default function AdminPanel() {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  // ── Article edit ─────────────────────────────────────────────
   const startEditArticle = async (article) => {
     try {
       const { data } = await api.get(`/articles/${article.slug}`);
@@ -133,12 +130,10 @@ export default function AdminPanel() {
     if (coverInputRef.current) coverInputRef.current.value = '';
   };
 
-  // ── Spec helpers ─────────────────────────────────────────────
   const addSpec = () => setGadgetForm(f => ({ ...f, specs: [...f.specs, { key: '', value: '' }] }));
   const updateSpec = (i, field, val) => setGadgetForm(f => ({ ...f, specs: f.specs.map((s, idx) => idx === i ? { ...s, [field]: val } : s) }));
   const removeSpec = (i) => setGadgetForm(f => ({ ...f, specs: f.specs.filter((_, idx) => idx !== i) }));
 
-  // ── Image upload helpers ─────────────────────────────────────
   const handleImageFile = async (file) => {
     if (!file) return;
     setImagePreview(URL.createObjectURL(file));
@@ -181,7 +176,6 @@ export default function AdminPanel() {
     if (coverInputRef.current) coverInputRef.current.value = '';
   };
 
-  // ── Submit handlers ──────────────────────────────────────────
   const submitGadget = async (e) => {
     e.preventDefault();
     const payload = { ...gadgetForm, specs: gadgetForm.specs.filter(s => s.key && s.value) };
@@ -299,7 +293,6 @@ export default function AdminPanel() {
           </div>
         </form>
 
-        {/* ── Article Form ── */}
         <form className="tool-panel" onSubmit={submitArticle} ref={articleFormRef}>
           <h2>{editingArticleId ? 'Edit Berita' : 'Tambah Berita'}</h2>
           <label>Judul<input value={articleForm.title} onChange={e => setArticleForm({ ...articleForm, title: e.target.value })} required /></label>

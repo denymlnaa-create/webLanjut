@@ -41,12 +41,10 @@ export default function AllGadgets() {
     } else if (sort === 'nama') {
       result = [...result].sort((a, b) => `${a.brand} ${a.name}`.localeCompare(`${b.brand} ${b.name}`));
     }
-    // default: terbaru — urutan dari API (sudah DESC updated_at)
 
     return result;
   }, [gadgets, query, category, sort]);
 
-  // Kumpulkan kategori unik dari data
   const existingCategories = useMemo(() => {
     const cats = [...new Set(gadgets.map(g => g.category.toLowerCase()))];
     return ['Semua', ...cats];
@@ -82,7 +80,6 @@ export default function AllGadgets() {
         </div>
       </div>
 
-      {/* Category chips */}
       <div className="category-chips">
         {existingCategories.map(cat => (
           <button

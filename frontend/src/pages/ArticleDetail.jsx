@@ -42,7 +42,6 @@ export default function ArticleDetail() {
       <div className="eyebrow">{article.category}</div>
       <h1>{article.title}</h1>
 
-      {/* Admin buttons */}
       {user?.role === 'admin' && (
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
           <Link

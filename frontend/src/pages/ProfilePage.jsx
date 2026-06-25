@@ -45,7 +45,6 @@ export default function ProfilePage() {
   return (
     <div className="page" style={{ maxWidth: 680 }}>
 
-      {/* Kartu profil dengan icon settings */}
       <div className="profile-avatar-section" style={{ marginBottom: 24, position: 'relative' }}>
         <div className="profile-avatar-wrap">
           {avatarSrc
@@ -73,7 +72,6 @@ export default function ProfilePage() {
         </Link>
       </div>
 
-      {/* Tab post / reply */}
       <div className="segmented" style={{ marginBottom: 16 }}>
         <button type="button" className={historyTab === 'posts' ? 'active' : ''} onClick={() => setHistoryTab('posts')}>
           Post ({posts.length})
