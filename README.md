@@ -1,4 +1,4 @@
-# BoysGadget Stream
+# BoysGadgetV2
 
 Project fullstack untuk katalog gadget, spesifikasi, berita, dan trending gadget berbasis data database.
 
