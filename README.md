@@ -35,13 +35,21 @@ README.md
 ## Setup Database
 
 1. Buka MySQL, phpMyAdmin, Laragon, XAMPP, atau terminal MySQL.
-2. Import file:
+2. Buat database baru dengan nama `boysgadget2`.
+3. Import file skema berikut:
 
+```text
+backend/db/schema.sql
+```
 
+4. Setelah import selesai, kamu bisa login dengan akun admin awal:
 
-Admin awal:
+```text
 username: admin
 password: password123
+```
+
+> Catatan: file skema hanya membuat struktur tabel di database. File foto yang sudah ada di folder `backend/uploads/` tidak akan otomatis dihapus. Kalau ingin membersihkan gambar lama, kamu bisa hapus folder tersebut secara manual.
 
 
 ## Setup Backend
